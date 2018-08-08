@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="no-js scroll-smooth border-box font-main background-primary color-default">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Coords Test</title>
+    <script type="module" src="js/index.js" async=""></script>
+    <link rel="stylesheet" href="css/styles/index.css" media="all" />
+    <link rel="icon" href="img/adwaita-icons/actions/find-location.svg" type="image/svg+xml" sizes="any" />
+  </head>
+  <body>
+    <header>
+      <button type="button" title="Add Coordinates" data-show-modal="#add-dialog">
+        <svg class="current-color icon">
+          <use xlink:href="img/icons.svg#find-location" />
+        </svg>
+      </button>
+			<button type="button" title="Search Coordinates" data-show-modal="#search-dialog">
+        <svg class="current-color icon">
+          <use xlink:href="img/icons.svg#search" />
+        </svg>
+      </button>
+    </header>
+		<main id="container"></main>
+    <dialog id="add-dialog" class="animation-speed-slow animation-ease-in-out fade-in no-border">
+      <form name="addLocation" action="addLocation.php" method="post">
+        <fieldset>
+          <legend>Coordinates</legend>
+          <button type="button" data-action="find-location" title="Find Location">
+            <svg class="current-color icon">
+              <use xlink:href="img/icons.svg#find-location" />
+            </svg>
+          </button>
+          <div>
+            <label for="location-longitude">Longitude:</label>
+            <input type="number" name="addLocation[longitude]" id="location-longitude" class="longitude" step="0.0001" min="-180" max="180" required="" />
+          </div>
+          <div>
+            <label for="location-latitude">Latitude:</label>
+            <input type="number" name="addLocation[latitude]" id="location-latitude" class="latitude" step="0.0001" min="-90" max="90" required="" />
+          </div>
+        </fieldset>
+        <button type="submit" title="Submit">
+          <svg class="current-color icon">
+            <use xlink:href="img/icons.svg#check" />
+          </svg>
+        </button>
+        <button type="reset" title="Cancel">
+          <svg class="current-color icon">
+            <use xlink:href="img/icons.svg#edit-clear" />
+          </svg>
+        </button>
+      </form>
+    </dialog>
+		<dialog id="search-dialog" class="animation-speed-slow animation-ease-in-out fade-in no-border">
+      <form name="searchLocation" action="search.php" method="get">
+        <fieldset>
+          <legend>Coordinates</legend>
+          <button type="button" data-action="find-location" title="Find Location">
+            <svg class="current-color icon">
+              <use xlink:href="img/icons.svg#find-location" />
+            </svg>
+          </button>
+          <div>
+            <label for="search-longitude">Longitude:</label>
+            <input type="number" name="search[longitude]" class="longitude" id="search-longitude" step="0.0001" min="-180" max="180" required="" />
+          </div>
+          <div>
+            <label for="search-latitude">Latitude:</label>
+            <input type="number" name="search[latitude]" class="latitude" id="search-latitude" step="0.0001" min="-90" max="90" required="" />
+          </div>
+					<div>
+						<label for="search-radius">Radius</label>
+						<input type="number" name="search[radius]" id="search-radius" step="0.25" min="0.25" max="5" value="0.25" required="" />
+					</div>
+        </fieldset>
+        <button type="submit" title="Submit">
+          <svg class="current-color icon">
+            <use xlink:href="img/icons.svg#search" />
+          </svg>
+        </button>
+        <button type="reset" title="Cancel">
+          <svg class="current-color icon">
+            <use xlink:href="img/icons.svg#edit-clear" />
+          </svg>
+        </button>
+      </form>
+    </dialog>
+    <template id="search-results-template">
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Longitude</th>
+            <th>Latitude</th>
+            <th>DateTime</th>
+          </tr>
+        </thead>
+        <tbody>
+      </table>
+    </template>
+    <template id="search-results-row-template">
+      <tr>
+        <td data-field="longitude"></td>
+        <td data-field="latitude"></td>
+        <td>
+          <time data-field="dtime" datatime=""></time>
+        </td>
+      </tr>
+    </template>
+  </body>
+</html>

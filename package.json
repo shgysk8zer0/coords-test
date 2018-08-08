@@ -1,0 +1,23 @@
+{
+  "name": "coords-test",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build:icons": "svg-sprite-generate -c icons.csv -o img/icons.svg",
+    "postinstall": "git submodule update --init --recursive && npm run build:icons",
+    "start": "php -S localhost:8000",
+    "test": "eslint . && stylelint css/**/*.css"
+  },
+  "author": "Chris Zuber <shgysk8zer0@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-plugin-async-await": "0.0.0",
+    "stylelint": "^9.4.0",
+    "svgo": "^1.0.5"
+  },
+  "dependencies": {
+    "svg-sprite-generator": "0.0.7"
+  }
+}
